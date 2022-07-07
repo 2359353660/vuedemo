@@ -21,9 +21,11 @@ const mutations = {
   },
   SET_NAME: (state, name) => {
     state.name = name
+    console.log('SET_NAME', state.name)
   },
   SET_AVATAR: (state, avatar) => {
     state.avatar = avatar
+    console.log('SET_AVATAR', state.avatar)
   }
 }
 
@@ -33,9 +35,9 @@ const actions = {
     const { username, password } = userInfo
     return new Promise((resolve, reject) => {
       login({ username: username.trim(), password: password }).then(response => {
-        const { data } = response
-        commit('SET_TOKEN', data.token)
-        setToken(data.token)
+        // const { data } = response
+        commit('SET_TOKEN', 'AA')
+        setToken('AAA')
         resolve()
       }).catch(error => {
         reject(error)
@@ -47,6 +49,7 @@ const actions = {
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
       getInfo(state.token).then(response => {
+        /*
         const { data } = response
 
         if (!data) {
@@ -57,7 +60,12 @@ const actions = {
 
         commit('SET_NAME', name)
         commit('SET_AVATAR', avatar)
-        resolve(data)
+        resolve(data)*/
+
+        commit('SET_NAME', 'yangshuo')
+        commit('SET_AVATAR', '1.gif')
+        resolve({ name : 'yangshuo', avatar: '1.gif' })
+
       }).catch(error => {
         reject(error)
       })

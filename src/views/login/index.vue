@@ -90,6 +90,19 @@ export default {
         password: _this.loginForm.password
       }
       console.log(data)
+
+      _this.$store.dispatch('user/login', data).then(() => {
+        _this.$store.dispatch('user/getInfo')
+          .then(() => {
+            console.log('GetUserInfo')
+            _this.$router.push({ path: '/' }, () => console.log('OK'), () => console.error('err'))
+          })
+          .catch(err => console.log(err))
+      }).catch(() => {
+        console.log('Error!')
+      })
+
+    /*
       login(data).then(function(response) {
         const successCode = response.data.code
         console.log(successCode)
@@ -109,7 +122,7 @@ export default {
       }).catch(function(error) {
         _this.loading = false
         console.log(error)
-      })
+      })*/
       //
       // this.loading = true
       // const _this = this
