@@ -2,7 +2,7 @@ import request from '@/utils/request'
 import axios from 'axios'
 
 export function login(data) {
-  return request({
+  return axios({
     method: 'POST',
     url: 'http://localhost:8080/login',
     data

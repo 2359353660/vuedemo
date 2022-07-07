@@ -86,7 +86,7 @@ export default {
     handleLogin() {
       const _this = this
       const data = {
-        username: _this.loginForm.username,
+        username: _this.loginForm.username.trim(),
         password: _this.loginForm.password
       }
       console.log(data)
@@ -96,7 +96,10 @@ export default {
         if (successCode == '1001') {
           _this.loading = false
           console.log('登陆成功')
-          _this.$router.push({ path: '/' })
+          // _this.$router.push({ path: '/' }).catch(() => {})
+          // _this.$router.push('/').then(() => {}).catch(() => {});
+          _this.$router.push('/aaaaaa', () => console.log('OK'), (e) => console.log('onAbort', e))
+          console.log('123')
         } else {
           console.log('登陆失败')
           _this.loading = false
